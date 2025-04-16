@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>세종문화회관</title>
-  <!-- 애니메이션 라이브러리 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   <!-- CSS 연결 -->
@@ -30,6 +31,80 @@
     </div>
   </nav>
   
+  <!-- 드로어 메뉴 -->
+  <div id="drawer-menu">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  
+  <!-- 슬라이더 영역 -->
+  <div class="hero-slider">
+    <!-- 첫 번째 슬라이드 -->
+    <div class="hero-slide">
+      <img src="images/imageSrc (7).jpeg" alt="메인" id="main-image">
+      <div class="hero-overlay"></div>
+      <div class="hero-text">
+        <p>합창으로 꽃 피우는 봄</p>
+        <h1>합창, 피어나다</h1>
+        <p>4.16 ~ 4.17 세종체임버홀</p>
+      </div>
+    </div>
+  
+    <!-- 두 번째 슬라이드 -->
+    <div class="hero-slide">
+      <img src="images/imageSrc (6).jpeg" alt="슬라이드 이미지">
+      <div class="hero-overlay"></div>
+      <div class="hero-text">
+        <p>악마와의 치명적인 거래, 괴테와 구노의 역작</p>
+        <h1>파우스트</h1>
+        <p>4.10 ~ 4.13 세종대극장</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="performance-schedule">
+    <div class="performance-wrapper">
+      <!-- 첫 번째 슬라이드: 공연 일정 타이틀 -->
+      <div class="performance-item">
+        <div class="performance-text">
+          공연 일정
+        </div>
+      </div>
+      <!-- 두 번째 슬라이드: 2025년 4월 3주차 정보 -->
+      <div class="performance-item">
+        <div class="performance-text">
+          <img src="images/imageSrc (9).jpeg" alt="주간 공연사진">
+        </div>
+      </div>
+      <!-- 필요에 따라 다른 슬라이드들 추가 -->
+    </div>
+  </section>
+
+  <section id="ranking">
+    <div class="ranking-wrapper">
+      <!-- 첫 번째 슬라이드: 랭킹 타이틀 -->
+      <div class="ranking-item">
+        <div class="ranking-text">
+          랭킹
+        </div>
+      </div>
+      <!-- 두 번째 슬라이드: 랭킹 정보 -->
+      <div class="ranking-item">
+        <div class="ranking-text">
+          <img src="images/imageSrc (8).jpeg" alt="랭킹사진">
+        </div>
+      </div>
+
+      <div class="ranking-item">
+        <div class="ranking-text">
+          <img src="images/imageSrc (10).jpeg" alt="랭킹사진">
+        </div>
+      <!-- 필요에 따라 다른 슬라이드들 추가 -->
+    </div>
   <!-- JS 연결 -->
   <script src="js/main.js" defer></script>
 </body>

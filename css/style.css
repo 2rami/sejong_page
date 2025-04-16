@@ -1,14 +1,41 @@
-/* 기본 스타일 */
+/* 전체 스크롤바 안 보이게 하기 */
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-    min-height: 200vh;
-    margin: 0;
-  }
-  
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none;    /* Firefox */
+  min-height: 200vh;
+  margin: 0;
+  /* 모바일 safe-area 적용 (예: iOS) */
+  padding-top: env(safe-area-inset-top);
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px; /* 스크롤바 너비 */
+  height: 10px; /* 가로 스크롤바 높이 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 트랙 배경 */
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* 스크롤바 손잡이 색상 */
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
   /* 인트로 애니메이션 */
   #lottie-intro {
     width: 200px;
     height: 200px;
-    background: rgb(255, 255, 255); /* 테스트용 배경색 */
+    background: #fff;
     transform: scale(1);
     opacity: 1;
   }
@@ -35,20 +62,13 @@ body {
     height: 60px;
     background-color: white;
     border-bottom: 1px solid #000;
-    display: none; /* 초기에는 숨김 처리 */
+    display: flex;
     justify-content: space-between;
     padding: 0 20px;
     align-items: center;
     z-index: 10000;
-    transition: background-color 0.3s ease;
-  }
-  
-  #navbar.scrolled {
-    background-color: #000;
-  }
-  
-  #navbar img.scrolled {
-    filter: brightness(0) invert(1);
+    transition: opacity 1s ease, background-color 0.3s ease;
+    opacity: 0;
   }
   
   .nav-left,
@@ -76,13 +96,193 @@ body {
   }
   
   /* 이미지 사이즈 및 커서 */
-  #menu-logo, 
-  #menu-logo-mypage, 
+  #menu-logo,
+  #menu-logo-mypage,
   #menu-logo-search {
     height: 40px;
     cursor: pointer;
+    transition: transform 0.3s ease;
   }
   
   #menu-logo-text {
     height: 32px;
   }
+  
+  /* 드로어 메뉴 */
+  #drawer-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    transition: left 0.3s ease;
+    z-index: 9998;
+  }
+  
+  #drawer-menu.open {
+    left: 0;
+  }
+  
+  #drawer-menu ul {
+    list-style: none;
+    padding: 20px;
+  }
+  
+  #drawer-menu li {
+    margin-bottom: 15px;
+  }
+  
+  #drawer-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  /* Hero Slider */
+  .hero-slider {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 60px); /* 네비 높이 제외 */
+    margin-top: 60px;          /* 네비 아래에서 시작 */
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    transition: opacity 1s ease, background-color 0.3s ease;
+  }
+  
+  .hero-slide {
+    position: relative;
+    background-color: #000; /* 기본 검은 배경 */
+    flex: 0 0 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    opacity: 0; /* 처음엔 숨김 */
+    transition: opacity 1s ease, filter 0.5s ease;
+  }
+  
+  .hero-slide.active {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  
+  .hero-slide:not(.active) {
+    filter: brightness(0.1); /* inactive 슬라이드는 매우 어둡게 */
+  }
+  
+  .hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* 슬라이드 오버레이 및 텍스트 */
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+    z-index: 1;
+    opacity: 1;
+    transition: none;
+  }
+  
+  .hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: #fff;
+    z-index: 2;
+    opacity: 1;
+    transition: none;
+    padding-bottom: 40px;
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+  }
+  
+ /* 공연 일정 섹션 */
+#performance-schedule {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: #ffffff;
+  color: #000;
+  transition: background 1s ease;
+  opacity: 1;
+  overflow-x: auto; /* 변경: horizontal scroll 활성화 */
+  overflow-y: hidden; /* 수직 스크롤은 필요 없다면 숨기기 */
+}
+
+
+
+/* 내부 슬라이더 컨테이너 */
+.performance-wrapper {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 각 공연 일정 슬라이드 */
+.performance-item {
+  flex: 0 0 100vw;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* 공연 일정 텍스트 스타일 (원래 내용 유지) */
+.performance-text {
+  position: relative;
+  font-size: 3rem;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-weight: 800;
+  line-height: 127.45px;
+  word-wrap: break-word;
+  color: rgb(from color r g b)
+  transition: color 1s ease, transform 0.3s ease;
+}
+
+
+
+/* (필요 시, h2와 p에 대한 추가 스타일도 적용 가능) */
+.performance-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.performance-text p {
+  font-size: 1.2rem;
+}
+  
+
+/* 네비게이션 바 inverted 스타일 */
+#navbar.inverted {
+  background-color: #000 !important;
+}
+#navbar.inverted img {
+  filter: brightness(0) invert(1);
+}
+
+#performance-schedule.inverted {
+  background: #000 !important;
+  color: #fff !important;
+  transform: scale(1) !important; /* full size when inverted */
+}
+
+/* 공연 일정 텍스트 inverted 스타일: 배경은 투명하게, 색상은 흰색으로 */
+.performance-text.inverted {
+  color: #fff !important;
+  background: transparent !important;
+}
