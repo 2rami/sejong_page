@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>세종문화회관</title>
+  <!-- CDN 불러오기 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js" defer></script>
@@ -34,13 +36,13 @@
   <!-- 드로어 메뉴 -->
   <div id="drawer-menu">
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#">프로그램</a></li>
+      <li><a href="#">캘린더</a></li>
+      <li><a href="#">랭킹</a></li>
+      <li><a href="#">이벤트&소식</a></li>
+      <li><a href="#">기관소개</a></li>
     </ul>
   </div>
-  
   <!-- 슬라이더 영역 -->
   <div class="hero-slider">
     <!-- 첫 번째 슬라이드 -->
@@ -74,38 +76,108 @@
           공연 일정
         </div>
       </div>
+      <div class="performance-item">
+        <div class="performance-text">
+          <h2>4월 1주차</h2>
+        </div>
+      </div>
       <!-- 두 번째 슬라이드: 2025년 4월 3주차 정보 -->
       <div class="performance-item">
         <div class="performance-text">
           <img src="images/imageSrc (9).jpeg" alt="주간 공연사진">
+          <h2>해리 포터와 혼혈 왕자™ 인 콘서트</h2>
         </div>
       </div>
-      <!-- 필요에 따라 다른 슬라이드들 추가 -->
+      <div class="performance-item">
+        <div class="performance-text">
+          <h2>4월 2주차</h2>
+        </div>
+      </div>
+      <div class="performance-item">
+        <div class="performance-text">
+          <img src="images/imageSrc (11).jpeg" alt="주간 공연사진">
+          <h2>동방미래특급</h2>
+        </div>
+      </div>
+      <div class="performance-item">
+        <div class="performance-text">
+          예매 랭킹
+        </div>
+      </div>
+      <div class="performance-item">
+        <div class="performance-text">
+          <h2>1위</h2>
+          <img id="rankingimage" src="images/imageSrc (10).jpeg" alt="rankingimage">
+          <p>음악 속에 녹아드는 광기와 우울, 그리고 유머</p>
+          <p class="subtitle">요한 잉거 워킹 매드 ＆ 블리스</p>
+          <p class="date">5.08 ~ 5.18</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="ranking">
-    <div class="ranking-wrapper">
-      <!-- 첫 번째 슬라이드: 랭킹 타이틀 -->
-      <div class="ranking-item">
-        <div class="ranking-text">
-          랭킹
-        </div>
+  <section id="event">  
+   <div class="eventpage">  
+      <div class="eventpage-text">
+        <h2>이벤트<br>
+          &<br>
+          소식</h2>
       </div>
-      <!-- 두 번째 슬라이드: 랭킹 정보 -->
-      <div class="ranking-item">
-        <div class="ranking-text">
-          <img src="images/imageSrc (8).jpeg" alt="랭킹사진">
-        </div>
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[이벤트] 봄맞이 할인 이벤트 🌸</div>
+        <div class="event-date">4월 1일부터 4월 15일까지</div>
       </div>
-
-      <div class="ranking-item">
-        <div class="ranking-text">
-          <img src="images/imageSrc (10).jpeg" alt="랭킹사진">
-        </div>
-      <!-- 필요에 따라 다른 슬라이드들 추가 -->
-    </div>
+    
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[공지] 정기점검 안내</div>
+        <div class="event-date">4월 5일(금) 오전 2시 ~ 4시</div>
+      </div>
+    
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[프로모션] 조기예매 할인</div>
+        <div class="event-date">4월 10일까지</div>
+      </div>
+  </section>
   <!-- JS 연결 -->
   <script src="js/main.js" defer></script>
+  <!-- 사이트 푸터 -->
+  <footer id="site-footer">
+    <div class="footer-top">
+      <div class="footer-contact">
+        <img src="images/로고.svg" alt="세종문화회관 로고" class="footer-logo" />
+        <div class="footer-phone">
+          <span>전화예매 및 문의</span>
+          <strong>02-399-1000</strong>
+        </div>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p>재단법인 세종문화회관 서울특별시 종로구 세종대로 175 (세종로) (우)03172</p>
+      <p>대표자 : 안호상</p>
+      <p>사업자등록번호 : 101-82-06773</p>
+      <p>통신판매업신고 : 서울종로-0988호</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">개인정보처리방침</a>
+      <a href="#">이용약관</a>
+      <a href="#">이메일무단수집거부</a>
+      <a href="#">고객서비스헌장</a>
+      <a href="#">오시는 길</a>
+      <a href="#">사이트 맵</a>
+    </div>
+    <div class="footer-social">
+      <a href="#"><img src="images/icon-instagram.svg" alt="Instagram"></a>
+      <a href="#"><img src="images/icon-youtube.svg" alt="YouTube"></a>
+      <a href="#"><img src="images/icon-x.svg" alt="X"></a>
+      <a href="#"><img src="images/icon-facebook.svg" alt="Facebook"></a>
+      <a href="#"><img src="images/icon-blog.svg" alt="Blog"></a>
+    </div>
+    <div class="footer-bottom">
+      <p>COPYRIGHT© SEJONG CENTER FOR THE PERFORMING ARTS. ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
 </body>
 </html>

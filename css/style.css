@@ -2,232 +2,214 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
+section {
+  margin: 0;
+  padding: 0;
+}
 body {
-  -ms-overflow-style: none; /* IE, Edge */
-  scrollbar-width: none;    /* Firefox */
+
   min-height: 200vh;
   margin: 0;
   /* 모바일 safe-area 적용 (예: iOS) */
   padding-top: env(safe-area-inset-top);
 }
 
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 10px; /* 스크롤바 너비 */
-  height: 10px; /* 가로 스크롤바 높이 */
+/* 인트로 애니메이션 */
+#lottie-intro {
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  transform: scale(1);
+  opacity: 1;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1; /* 트랙 배경 */
-  border-radius: 5px;
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #888; /* 스크롤바 손잡이 색상 */
-  border-radius: 5px;
+/* 네비게이션 바 */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 1s ease, background-color 0.3s ease;
+  opacity: 0;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
 }
-  /* 인트로 애니메이션 */
-  #lottie-intro {
-    width: 200px;
-    height: 200px;
-    background: #fff;
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  #intro-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* 네비게이션 바 */
-  #navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    border-bottom: 1px solid #000;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    align-items: center;
-    z-index: 10000;
-    transition: opacity 1s ease, background-color 0.3s ease;
-    opacity: 0;
-  }
-  
-  .nav-left,
-  .nav-center,
-  .nav-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-left {
-    flex: 1;
-    justify-content: flex-start;
-  }
-  
-  .nav-center {
-    flex: 1;
-    justify-content: center;
-  }
-  
-  .nav-right {
-    flex: 1;
-    justify-content: flex-end;
-    gap: 10px;
-    padding-right: 20px;
-  }
-  
-  /* 이미지 사이즈 및 커서 */
-  #menu-logo,
-  #menu-logo-mypage,
-  #menu-logo-search {
-    height: 40px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  #menu-logo-text {
-    height: 32px;
-  }
-  
-  /* 드로어 메뉴 */
-  #drawer-menu {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-    transition: left 0.3s ease;
-    z-index: 9998;
-  }
-  
-  #drawer-menu.open {
-    left: 0;
-  }
-  
-  #drawer-menu ul {
-    list-style: none;
-    padding: 20px;
-  }
-  
-  #drawer-menu li {
-    margin-bottom: 15px;
-  }
-  
-  #drawer-menu a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-  }
-  
-  /* Hero Slider */
-  .hero-slider {
-    position: relative;
-    width: 100vw;
-    height: calc(100vh - 60px); /* 네비 높이 제외 */
-    margin-top: 60px;          /* 네비 아래에서 시작 */
-    overflow-x: auto;
-    overflow-y: hidden;
-    display: flex;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    opacity: 0;
-    transition: opacity 1s ease, background-color 0.3s ease;
-  }
-  
-  .hero-slide {
-    position: relative;
-    background-color: #000; /* 기본 검은 배경 */
-    flex: 0 0 100vw;
-    height: 100vh;
-    scroll-snap-align: start;
-    opacity: 0; /* 처음엔 숨김 */
-    transition: opacity 1s ease, filter 0.5s ease;
-  }
-  
-  .hero-slide.active {
-    opacity: 1;
-    filter: brightness(1);
-  }
-  
-  .hero-slide:not(.active) {
-    filter: brightness(0.1); /* inactive 슬라이드는 매우 어둡게 */
-  }
-  
-  .hero-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  /* 슬라이드 오버레이 및 텍스트 */
-  .hero-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
-    z-index: 1;
-    opacity: 1;
-    transition: none;
-  }
-  
-  .hero-text {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    color: #fff;
-    z-index: 2;
-    opacity: 1;
-    transition: none;
-    padding-bottom: 40px;
-    white-space: normal;
-    word-break: break-word;
-    overflow: visible;
-  }
-  
- /* 공연 일정 섹션 */
-#performance-schedule {
+
+.nav-left {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.nav-center {
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-right {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 20px;
+}
+
+/* 이미지 사이즈 및 커서 */
+#menu-logo,
+#menu-logo-mypage,
+#menu-logo-search {
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#menu-logo-text {
+  height: 32px;
+}
+
+/* 드로어 메뉴 */
+#drawer-menu {
+  position: fixed;
+  top: 60px; /* below navbar */
+  left: -250px;
+  width: 250px;
+  height: calc(100% - 60px); /* fill under navbar */
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  transition: left 0.3s ease;
+  z-index: 9998;
+}
+
+#drawer-menu.open {
+  left: 0;
+}
+
+#drawer-menu ul {
+  list-style: none;
+  padding: 20px;
+}
+
+#drawer-menu li {
+  margin-bottom: 15px;
+}
+
+#drawer-menu a {
+  color: #000000;
+  font-size: 1.2rem;               /* 원하는 크기로 조정 (예: 1.2rem) */
+  font-family: "Apple SD Gothic Neo", sans-serif;  /* 원하는 서체 */
+  font-weight: 500;                /* 예: 500으로 변경하여 굵기 조정 */              /* 예: 이탤릭 스타일을 원하면 추가 */
+  letter-spacing: 0.05em;          /* 글자 사이 간격 조정 */
+  line-height: 1.4;                /* 줄 높이 조정 */
+}
+
+/* Hero Slider */
+.hero-slider {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
-  background: #ffffff;
-  color: #000;
-  transition: background 1s ease;
-  opacity: 1;
-  overflow-x: auto; /* 변경: horizontal scroll 활성화 */
-  overflow-y: hidden; /* 수직 스크롤은 필요 없다면 숨기기 */
+  height: calc(100vh - 60px); /* 네비 높이 제외 */
+  margin-top: 60px;          /* 네비 아래에서 시작 */
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  transition: opacity 1s ease, background-color 0.3s ease;
 }
 
+.hero-slide {
+  position: relative;
+  background-color: #000; /* 기본 검은 배경 */
+  flex: 0 0 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  opacity: 0; /* 처음엔 숨김 */
+  transition: opacity 1s ease, filter 0.5s ease;
+}
 
+.hero-slide.active {
+  opacity: 1;
+  filter: brightness(1);
+}
+
+.hero-slide:not(.active) {
+  filter: brightness(0.1); /* inactive 슬라이드는 매우 어둡게 */
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 슬라이드 오버레이 및 텍스트 */
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+  z-index: 1;
+  opacity: 1;
+  transition: none;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
+  z-index: 2;
+  opacity: 1;
+  transition: none;
+  padding-bottom: 40px;
+  white-space: normal;
+  word-break: break-word;
+  overflow: visible;
+}
+
+#performance-schedule {
+  position: relative;
+  padding-bottom: 100vh;
+  width: 100vw;
+  height: 100vh;       /* 고정 높이, 뷰포트에 맞춤 */
+  overflow: hidden;    /* 섹션 내 가로 오버플로우만 보이도록 */
+  background: #ffffff;
+  color: #000;
+  transition: background 0.5s ease;
+  opacity: 1;
+}
 
 /* 내부 슬라이더 컨테이너 */
 .performance-wrapper {
   display: flex;
-  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -245,17 +227,34 @@ body {
 /* 공연 일정 텍스트 스타일 (원래 내용 유지) */
 .performance-text {
   position: relative;
-  font-size: 3rem;
+  font-size: 6rem;
   font-family: "Apple SD Gothic Neo", sans-serif;
   font-weight: 800;
-  line-height: 127.45px;
-  word-wrap: break-word;
-  color: rgb(from color r g b)
+  word-break: keep-all;
+  color: rgb(from color r g b);
   transition: color 1s ease, transform 0.3s ease;
+  white-space: normal; /* 줄바꿈을 자연스럽게 */
+  text-align: center;  /* 중앙 정렬 */
 }
 
+.performance-text p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0;
+}
 
-
+.performance-text .subtitle {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 500;
+  margin-top: 0.5rem; /* adjust as needed */
+}
+.performance-text .date {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 200;
+  margin-top: 0.5rem; /* adjust as needed */
+}
 /* (필요 시, h2와 p에 대한 추가 스타일도 적용 가능) */
 .performance-text h2 {
   font-size: 2rem;
@@ -265,7 +264,6 @@ body {
 .performance-text p {
   font-size: 1.2rem;
 }
-  
 
 /* 네비게이션 바 inverted 스타일 */
 #navbar.inverted {
@@ -285,4 +283,134 @@ body {
 .performance-text.inverted {
   color: #fff !important;
   background: transparent !important;
+}
+.eventpage-text {
+  position: relative;
+  font-size: 6rem;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  color: rgb(0,0,0);
+  margin-bottom: 20px;
+  transition: color 1s ease, transform 0.3s ease;
+} 
+#event {
+  background: white;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.event-title {
+  font-size: 32px;
+  font-weight: 800;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  margin-bottom: 30px;
+  text-align: left;
+  color: black;
+}
+
+.event-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.event-line {
+  width: 100%;
+  height: 1px;
+  background: black;
+  margin-bottom: 12px;
+}
+
+.event-label {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  color: black;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.event-date {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  color: black;
+  line-height: 1.3;
+}
+
+#rankingimage {
+  display: block;
+  max-width: 80%;         /* limit width so it doesn’t span full container */
+  width: auto;
+  height: auto;
+  margin: 20px auto;      /* vertical margin and auto horizontal centering */
+}
+
+/* Footer Styles */
+#site-footer {
+  background: #fff;
+  color: #000;
+  padding: 40px 20px;
+  font-family: "Apple SD Gothic Neo", sans-serif;
+}
+.footer-top {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+}
+.footer-logo {
+  height: 40px;
+}
+.footer-phone span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.footer-phone strong {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 4px;
+}
+.footer-info {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.footer-links {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.footer-links a {
+  margin: 0 8px;
+  font-size: 0.875rem;
+  color: #000;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+.footer-social {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.footer-social a {
+  margin: 0 8px;
+  display: inline-block;
+}
+.footer-social img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+.footer-bottom {
+  border-top: 1px solid #000;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.75rem;
 }
