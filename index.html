@@ -25,23 +25,33 @@
       <img src="images/로고.svg" alt="로고" id="menu-logo">
     </div>
     <div class="nav-center">
-      <img src="images/글씨로고.svg" alt="글씨로고" id="menu-logo-text">
+
     </div>
     <div class="nav-right">
-      <img src="images/mypage.svg" alt="마이페이지" id="menu-logo-mypage">
-      <img src="images/search.svg" alt="검색" id="menu-logo-search">
+      <img src="images/글씨로고.svg" alt="글씨로고" id="menu-logo-text">
     </div>
   </nav>
   
   <!-- 드로어 메뉴 -->
   <div id="drawer-menu">
-    <ul>
-      <li><a href="#">프로그램</a></li>
+    <ul id="drawer-menu-list">
+      <li class="has-submenu">
+        <a href="#">프로그램</a>
+        <ul class="submenu">
+          <li><a href="#">공연/전시</a></li>
+          <li><a href="#">공연 정보</a></li>
+          <li><a href="#">예매</a></li>
+        </ul>
+      </li>
       <li><a href="#">캘린더</a></li>
       <li><a href="#">랭킹</a></li>
       <li><a href="#">이벤트&소식</a></li>
       <li><a href="#">기관소개</a></li>
     </ul>
+      <div class="drawer-icons">
+        <img src="images/mypage.svg" alt="마이페이지" class="drawer-icon">
+        <img src="images/search.svg" alt="검색" class="drawer-icon">
+      </div>
   </div>
   <!-- 슬라이더 영역 -->
   <div class="hero-slider">
@@ -93,7 +103,7 @@
           <h2>4월 2주차</h2>
         </div>
       </div>
-      <div class="performance-item">
+      <div class="performance-item" id="east">
         <div class="performance-text">
           <img src="images/imageSrc (11).jpeg" alt="주간 공연사진">
           <h2>동방미래특급</h2>
@@ -140,9 +150,29 @@
         <div class="event-label">[프로모션] 조기예매 할인</div>
         <div class="event-date">4월 10일까지</div>
       </div>
+
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[안내] 4월 카드사 무이자/부분 무이자 할부 안내</div>
+        <div class="event-date">4월 1일부터 4월 30일까지</div>
+      </div>
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[채용 공고] 2025년 2차 세종 충무공 이야기 해설단 모집</div>
+        <div class="event-date">모집 기간: 4월 20일까지</div>
+      </div>
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[안내] 서울시 모범납세자 할인 안내</div>
+        <div class="event-date">상시 적용</div>
+      </div>
+      <div class="event-item">
+        <div class="event-line"></div>
+        <div class="event-label">[채용 공고] 서울시소년소녀합창단 2025년 상반기 신규 단원 모집</div>
+        <div class="event-date">모집 기간: 5월 10일까지</div>
+      </div>
   </section>
-  <!-- JS 연결 -->
-  <script src="js/main.js" defer></script>
+
   <!-- 사이트 푸터 -->
   <footer id="site-footer">
     <div class="footer-top">
@@ -169,15 +199,17 @@
       <a href="#">사이트 맵</a>
     </div>
     <div class="footer-social">
-      <a href="#"><img src="images/icon-instagram.svg" alt="Instagram"></a>
-      <a href="#"><img src="images/icon-youtube.svg" alt="YouTube"></a>
-      <a href="#"><img src="images/icon-x.svg" alt="X"></a>
-      <a href="#"><img src="images/icon-facebook.svg" alt="Facebook"></a>
-      <a href="#"><img src="images/icon-blog.svg" alt="Blog"></a>
+      <a href="#"><img src="images/icon-instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="images/icon-youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="images/icon-twitter.png" alt="X"></a>
+      <a href="#"><img src="images/icon-facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="images/icon-blog.png" alt="Blog"></a>
     </div>
     <div class="footer-bottom">
       <p>COPYRIGHT© SEJONG CENTER FOR THE PERFORMING ARTS. ALL RIGHTS RESERVED</p>
     </div>
   </footer>
+    <!-- JS 연결 -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>

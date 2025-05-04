@@ -19,7 +19,7 @@ body {
   width: 200px;
   height: 200px;
   background: #fff;
-  transform: scale(1);
+  transform: scale(4);
   opacity: 1;
 }
 
@@ -75,7 +75,8 @@ body {
   flex: 1;
   justify-content: flex-end;
   gap: 10px;
-  padding-right: 20px;
+  scale: 1.2;
+  margin-right: 60px;
 }
 
 /* 이미지 사이즈 및 커서 */
@@ -89,41 +90,6 @@ body {
 
 #menu-logo-text {
   height: 32px;
-}
-
-/* 드로어 메뉴 */
-#drawer-menu {
-  position: fixed;
-  top: 60px; /* below navbar */
-  left: -250px;
-  width: 250px;
-  height: calc(100% - 60px); /* fill under navbar */
-  background-color: #fff;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-  transition: left 0.3s ease;
-  z-index: 9998;
-}
-
-#drawer-menu.open {
-  left: 0;
-}
-
-#drawer-menu ul {
-  list-style: none;
-  padding: 20px;
-}
-
-#drawer-menu li {
-  margin-bottom: 15px;
-}
-
-#drawer-menu a {
-  color: #000000;
-  font-size: 1.2rem;               /* 원하는 크기로 조정 (예: 1.2rem) */
-  font-family: "Apple SD Gothic Neo", sans-serif;  /* 원하는 서체 */
-  font-weight: 500;                /* 예: 500으로 변경하여 굵기 조정 */              /* 예: 이탤릭 스타일을 원하면 추가 */
-  letter-spacing: 0.05em;          /* 글자 사이 간격 조정 */
-  line-height: 1.4;                /* 줄 높이 조정 */
 }
 
 /* Hero Slider */
@@ -197,7 +163,6 @@ body {
 
 #performance-schedule {
   position: relative;
-  padding-bottom: 100vh;
   width: 100vw;
   height: 100vh;       /* 고정 높이, 뷰포트에 맞춤 */
   overflow: hidden;    /* 섹션 내 가로 오버플로우만 보이도록 */
@@ -276,7 +241,7 @@ body {
 #performance-schedule.inverted {
   background: #000 !important;
   color: #fff !important;
-  transform: scale(1) !important; /* full size when inverted */
+  /* transform: scale(1) !important; full size when inverted */
 }
 
 /* 공연 일정 텍스트 inverted 스타일: 배경은 투명하게, 색상은 흰색으로 */
@@ -291,14 +256,27 @@ body {
   font-weight: 800;
   text-align: center;
   color: rgb(0,0,0);
-  margin-bottom: 20px;
   transition: color 1s ease, transform 0.3s ease;
-} 
-#event {
-  background: white;
-  padding: 60px 20px;
-  position: relative;
+  width: 100vw;         /* Ensure full viewport width */
+  white-space: nowrap;  /* Prevent internal wrapping */
+  overflow-x: visible;  /* Allow the condensed text to expand */
 }
+
+.eventpage-text h2.condensed {
+  white-space: nowrap; /* Keep single-line when text is condensed */
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.1em;
+}
+
+
+#event {
+  --stop: 100%;
+  position: relative;
+  transition: background 0.5s ease;
+  margin-bottom: 100vh; /* Footer overlap 방지 */
+}
+
 
 .event-title {
   font-size: 32px;
@@ -310,7 +288,7 @@ body {
 }
 
 .event-item {
-  margin-bottom: 20px;
+  margin: 20px;
   position: relative;
 }
 
@@ -398,6 +376,7 @@ body {
 .footer-social {
   text-align: center;
   margin-bottom: 20px;
+  background-color: #000;
 }
 .footer-social a {
   margin: 0 8px;
@@ -413,4 +392,112 @@ body {
   padding-top: 20px;
   text-align: center;
   font-size: 0.75rem;
+}
+
+#drawer-menu {
+  position: fixed;
+  top: 60; /* changed from 60px */
+  left: -100vw; /* changed from -250px */
+  width: 100vw; /* changed from 250px */
+  height: calc(100% - 60px); /* fill under navbar */
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  transition: left 0.3s ease;
+  z-index: 9998;
+}
+/* 기본 숨김 */
+.submenu {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+/* 펼쳐질 때 높이 자동 → GSAP으로 제어 */
+/* 드로어 메뉴 아이콘 그룹 */
+.drawer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.drawer-icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+
+#drawer-menu.open {
+  left: 0;
+}
+
+#drawer-menu ul {
+  list-style: none;
+  padding: 20px;
+}
+
+#drawer-menu li {
+  margin-bottom: 15px;
+}
+
+#drawer-menu a {
+  color: #000000;
+  font-size: 1.2rem;               /* 원하는 크기로 조정 (예: 1.2rem) */
+  font-family: "Apple SD Gothic Neo", sans-serif;  /* 원하는 서체 */
+  font-weight: 500;                /* 예: 500으로 변경하여 굵기 조정 */              /* 예: 이탤릭 스타일을 원하면 추가 */
+  letter-spacing: 0.05em;          /* 글자 사이 간격 조정 */
+  line-height: 1.4;                /* 줄 높이 조정 */
+  text-align: center;
+}
+/* 드로어 메뉴 메인/서브 메뉴 스타일 */
+#drawer-menu-list > li > a {
+  display: block;
+  font-size: 2.5rem;        /* 메인 메뉴 크기 */
+  font-weight: 800;
+  color: #000;
+  padding: 20px 0;   
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#drawer-menu-list li.has-submenu.open > a {
+  color: #000;     
+  opacity: 1 !important;          /* 활성화된 메인 메뉴 강조 */
+}
+
+#drawer-menu-list .submenu > li > a {
+  display: block;
+  font-size: 1.8rem;         /* 서브 메뉴 크기 */
+  font-weight: 500;
+  color: #000;
+  padding-left: 30px;        /* 들여쓰기 */
+  padding: 10px 0;
+  text-decoration: none; 
+  opacity: 1 !important;  
+  text-align: left; 
+  position: relative; /* 추가: 화살표를 위해 */
+}
+
+/* 서브메뉴 우측 화살표 */
+#drawer-menu-list .submenu > li > a::after {
+  content: ">";
+  position: absolute;
+  right: 20px;          /* 원하는 간격으로 조정 */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;    /* 서브메뉴 텍스트 크기와 동일하게 */
+  color: #000;          /* 필요 시 색상 조정 */
+}
+
+/* 드로어 메뉴: 비활성화된 다른 메인 메뉴(드로어가 열렸을 때) 흐림 */
+
+/* 서브메뉴 표시 */
+#drawer-menu-list li.has-submenu.open .submenu {
+  height: auto !important;
+  opacity: 1 !important;
+  overflow: visible;
+}
+
+/* 드로어가 열리고, 루트 메뉴만 닫혔을 때 흐려지게 */
+#drawer-menu-list.active > li:not(.open) > a {
+  opacity: 0.3;
+  transform: translateY(20px);
 }

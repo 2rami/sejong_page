@@ -91,51 +91,29 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   }, 5000);
-  // 공연 일정 섹션과 네비게이션 바 색 반전 (inverted) 효과 적용
-  window.addEventListener("scroll", () => {
-    const navbar = document.getElementById("navbar");
-    const performanceSection = document.getElementById("performance-schedule");
-    const eventSection = document.getElementById("event");
-
-    // 각 섹션의 뷰포트 상단에서의 위치를 계산
-    const perfTop = performanceSection.getBoundingClientRect().top;
-    const eventTop = eventSection.getBoundingClientRect().top;
-
-    // 만약 이벤트 섹션이 화면 상단에 가까워지면(예: 80% 뷰포트 높이 이하) 네비바만 원상태(반전 없음)로 변경
-    if (eventTop <= window.innerHeight * 0.8) {
-      if (navbar) navbar.classList.remove("inverted");
-    } else if (perfTop <= 60) {
-      // 이벤트 섹션에 도달하기 전에는 공연 일정 섹션 기준으로 inverted 적용
-      if (performanceSection) performanceSection.classList.add("inverted");
-      if (navbar) navbar.classList.add("inverted");
-    } else {
-      if (performanceSection) performanceSection.classList.remove("inverted");
-      if (navbar) navbar.classList.remove("inverted");
-    }
-  });
   gsap.registerPlugin(ScrollTrigger);
-
-  const perfSection = document.getElementById("performance-schedule");
+  // horizontal scroll container and length calculation
   const wrapper = document.querySelector(".performance-wrapper");
   const scrollWidth = wrapper.scrollWidth - window.innerWidth;
+
+  // unified horizontal scroll + inverted toggle
   gsap.to(wrapper, {
     x: -scrollWidth,
     ease: "none",
     scrollTrigger: {
-      trigger: perfSection,
-      start: "top top", // section top pins at viewport top
-      end: "bottom", // end pin exactly at that moment
-      scrub: true,
+      trigger: "#performance-schedule",
+      start: "top top",
       end: () => `+=${scrollWidth}`,
-      // 바로 이렇게 바꿔주면 placeholder 높이(=end-start)도 scrollWidth 만큼 확보돼서
-      // horizontalScrollLength 만큼 스크롤해도 빈 공간이 생기지 않아요.
-      endTrigger: "#event",
-      pinSpacing: true, // placeholder 유지
-      pin: true, // keep section fixed during scroll
+      scrub: true,
+      pin: true,
       anticipatePin: 1,
-      markers: true, // 디버깅용, 테스트 후 제거 가능
-      invalidateOnRefresh: true, // recalc on resize
-    },
+      invalidateOnRefresh: true,
+      toggleClass: {
+        targets: ["#navbar", "#performance-schedule"],
+        className: "inverted"
+      },
+      markers: true
+    }
   });
 
   let tlEvent = gsap.timeline({
@@ -143,9 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
       trigger: "#event", // 이벤트 섹션을 기준으로 함
       start: "top 20%",
       end: "bottom 25%",
-      pin: true, // 섹션을 스크롤 동안 고정
+      pin: true,              // 섹션을 스크롤 동안 고정
+      pinSpacing: false,      // 고정 후 placeholder 공간 비활성화
       scrub: true,
-      markers: false, // 디버깅용, 테스트 후 제거 가능
+      markers: false,         // 디버깅용, 테스트 후 제거 가능
     },
   });
 
@@ -153,8 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
   tlEvent.to(
     ".eventpage-text h2",
     {
-      x: 90,
-      y: -300,
+      x: 80,
+      y: -250,
       scale: 0.2,
       opacity: 1,
       ease: "power2.out",
@@ -183,9 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { x: 0, y: 150, opacity: 0 }, // 초기 상태: 약간 위에서부터(혹은 아래에서, 원하는 효과에 따라 조정) 시작, 불투명도 0
     {
       x: 0,
-      y: -550,
+      y: -400,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.6,
       stagger: 0.2,
       ease: "power2.out",
     },
@@ -201,4 +180,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // 메뉴 아이콘 변경: 닫기 아이콘을 사용하려면 해당 경로로 바꿔주세요
     menuIcon.src = isOpen ? "images/close-icon.png" : "images/로고.svg";
   });
+  gsap.registerPlugin(ScrollTrigger);
+
+// 모든 메인 아이템
+
+// ─── JS: 클릭 시 열고 닫고, 나머지 흐림/복원 ───
+const links = document.querySelectorAll("#drawer-menu-list > li.has-submenu > a");
+const list  = document.getElementById("drawer-menu-list");
+
+links.forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+
+    // 1) 부모 li를 가져오기
+    const li      = link.parentElement;
+    // 2) siblings 중 .submenu 선택
+    const submenu = li.querySelector(".submenu");
+    // 3) open 클래스도 li에 토글
+    const isOpen  = li.classList.toggle("open");
+    list.classList.toggle("active", isOpen);
+
+    // 4) GSAP 애니메이션 (서브 열기/닫기)
+    if (submenu) {
+      if (isOpen) {
+        gsap.to(submenu, { maxHeight: 500, opacity: 1, duration: 1, ease: "power2.out" });
+      } else {
+        gsap.to(submenu, { maxHeight:   0, opacity: 0, duration: 1, ease: "power2.in" });
+      }
+    }
+  });
+});
 });
