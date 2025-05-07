@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   padding: 60px 20px;
-  pointer-events: none; /* 클릭 방지 (필요하면 삭제해도 됨) */
+  pointer-events: none;
 }
 
 .info-glass-container {
@@ -23,6 +23,7 @@
 }
 
 .info-box {
+  position: relative;
   width: 260px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -33,19 +34,18 @@
   color: #ffffff;
   font-family: 'Apple SD Gothic Neo', sans-serif;
   text-align: center;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-10%, -50%);
+  margin: 0 auto; /* center horizontally in flex container */
 }
 
 .info-box h2 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   margin-top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
   padding-bottom: 6px;
   color: #ffffff;
+  letter-spacing: 0.03em;
 }
 
 .info-box p {
@@ -89,6 +89,7 @@
 .poster-text h1 {
   font-size: 3rem;
   font-weight: 800;
+  margin-bottom: 8px;
 }
 
 .poster-text p {
@@ -636,3 +637,4 @@ body {
 .event-list a:hover {
   color: #ff3366;
 }
+
