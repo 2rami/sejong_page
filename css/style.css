@@ -4,12 +4,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 0 20px;
   pointer-events: none;
 }
 
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: row;
   gap: 40px;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   max-width: 100%;
   flex-wrap: wrap;
@@ -36,10 +36,10 @@
   color: #ffffff;
   font-family: 'Apple SD Gothic Neo', sans-serif;
   text-align: center;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .info-box h2 {
@@ -375,24 +375,63 @@ body {
   background-color: #f5f5f5;
   transition: background 0.2s ease;
 }
+/* Eventpage text styles for poster-section */
+/* 🎨 공연정보 텍스트 꾸미기 */
+.poster-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  gap: 40px;
+  background: #fefefe;
+}
+
 .eventpage-text {
-  position: relative;
-  font-size: 6rem;
+  max-width: 400px;
   font-family: "Apple SD Gothic Neo", sans-serif;
-  font-weight: 800;
-  text-align: center;
-  color: rgb(0,0,0);
-  transition: color 1s ease, transform 0.3s ease;
-  width: 100vw;         /* Ensure full viewport width */
-  white-space: nowrap;  /* Prevent internal wrapping */
-  overflow-x: visible;  /* Allow the condensed text to expand */
+  color: #222;
 }
 
 .eventpage-text h2.condensed {
-  white-space: nowrap; /* Keep single-line when text is condensed */
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #222;
   text-decoration: underline;
-  text-underline-offset: 0.2em;
-  text-decoration-thickness: 0.1em;
+  text-underline-offset: 6px;
+  text-decoration-color: #ff6f61;
+  margin-bottom: 0.6rem;
+}
+
+.eventpage-text .subtitle {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #555;
+}
+
+.poster-img {
+  width: auto;
+  max-width: 400px;
+  max-height: 500px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.poster-img:hover {
+  transform: scale(1.015);
+}
+
+@media screen and (max-width: 768px) {
+  .poster-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .eventpage-text {
+    max-width: 90%;
+  }
 }
 
 
@@ -643,3 +682,44 @@ body {
   color: #ff3366;
 }
 
+.intro-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 24px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  max-width: 360px;
+}
+
+.intro-text h2.condensed {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  margin-bottom: 0.4rem;
+}
+
+.intro-text .subtitle {
+  font-size: 1.4rem;
+  color: #eaeaea;
+  margin-bottom: 1rem;
+}
+
+.intro-img-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-poster-img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+}

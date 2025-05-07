@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
   
-    const boxes = [".time-box", ".place-box", ".schedule-box", ".ticket-box"];
+    const boxes = [".intro-box", ".time-box", ".place-box", ".schedule-box", ".ticket-box"];
     const sectionLength = 1 / boxes.length + 1;
   
     const tl = gsap.timeline({
@@ -32,19 +32,29 @@ document.addEventListener("DOMContentLoaded", () => {
     boxes.forEach((box, index) => {
       const boxStart = index * sectionLength;
       const boxFadeOutStart = boxStart + sectionLength * 0.8;
-  
-      tl.fromTo(box,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3 },
+    
+      // 모든 박스를 동일한 위치에 절대 배치
+      tl.set(box, {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
+      }, boxStart);
+    
+      tl.fromTo(
+        box,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3 },
         boxStart
       );
-  
-      tl.to(box,
-        { y: -50, opacity: 0, duration: 0.5 }, // 사라질 때도 부드럽게
+    
+      tl.to(
+        box,
+        { opacity: 0, duration: 0.5 },
         boxFadeOutStart
       );
     });
-  
+
     const navbar = document.getElementById("navbar");
     if (navbar) navbar.style.opacity = "1";
   });
