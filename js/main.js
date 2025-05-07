@@ -1,43 +1,58 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const startTime = Date.now(); // 애니메이션 시작 시각
-  const lottieContainer = document.getElementById("lottie-intro");
-  const animation = lottie.loadAnimation({
-    container: lottieContainer,
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    path: "ㅇ.json",
-  });
 
-  // overlay 제거 함수
-  function removeOverlay() {
-    const elapsed = Date.now() - startTime;
-    const minDisplayTime = 3000; // 최소 3초 동안 표시 (3000ms)
-    const additionalDelay = Math.max(minDisplayTime - elapsed, 0);
-    setTimeout(() => {
-      lottieContainer.style.transition = "transform 5s ease, opacity 0.4s ease";
-      lottieContainer.style.transform = "scale(300)";
-      lottieContainer.style.opacity = "0";
+document.addEventListener("DOMContentLoaded", () => {
+  const isHomePage = location.pathname.endsWith("index.html") || location.pathname === "/";
+  let animation;
+
+  if (isHomePage) {
+    const startTime = Date.now(); // 애니메이션 시작 시각
+    const lottieContainer = document.getElementById("lottie-intro");
+    animation = lottie.loadAnimation({
+      container: lottieContainer,
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      path: "ㅇ.json",
+    });
+
+    // overlay 제거 함수
+    function removeOverlay() {
+      const elapsed = Date.now() - startTime;
+      const minDisplayTime = 3000; // 최소 3초 동안 표시 (3000ms)
+      const additionalDelay = Math.max(minDisplayTime - elapsed, 0);
       setTimeout(() => {
-        const introOverlay = document.getElementById("intro-overlay");
-        if (introOverlay) introOverlay.remove();
-        const navbar = document.getElementById("navbar");
-        if (navbar) navbar.style.opacity = "1";
-        const heroSlider = document.querySelector(".hero-slider");
-        if (heroSlider) heroSlider.style.opacity = "1";
-      }, 800);
-    }, additionalDelay);
+        lottieContainer.style.transition = "transform 5s ease, opacity 0.4s ease";
+        lottieContainer.style.transform = "scale(300)";
+        lottieContainer.style.opacity = "0";
+        setTimeout(() => {
+          const introOverlay = document.getElementById("intro-overlay");
+          if (introOverlay) introOverlay.remove();
+          const navbar = document.getElementById("navbar");
+          if (navbar) navbar.style.opacity = "1";
+          const heroSlider = document.querySelector(".hero-slider");
+          if (heroSlider) heroSlider.style.opacity = "1";
+        }, 800);
+      }, additionalDelay);
+    }
+
+    // 페이지 로드 완료 시 오버레이 제거
+    window.addEventListener("load", () => {
+      removeOverlay();
+    });
+    animation.addEventListener("complete", () => {
+      if (document.readyState === "complete") {
+        removeOverlay();
+      }
+    });
   }
 
-  // 페이지 로드 완료 시 오버레이 제거
-  window.addEventListener("load", () => {
-    removeOverlay();
-  });
-  animation.addEventListener("complete", () => {
-    if (document.readyState === "complete") {
-      removeOverlay();
-    }
-  });
+  // Ensure navbar and hero slider are visible on non-home pages
+  if (!isHomePage) {
+    const navbar = document.getElementById("navbar");
+    if (navbar) navbar.style.opacity = "1";
+
+    const heroSlider = document.querySelector(".hero-slider");
+    if (heroSlider) heroSlider.style.opacity = "1";
+  }
 
   // 슬라이드 자동 fade-in/out via IntersectionObserver
   const slides = document.querySelectorAll(".hero-slide");
@@ -112,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         targets: ["#navbar", "#performance-schedule"],
         className: "inverted"
       },
-      markers: true
+      markers: false
     }
   });
 
@@ -174,12 +189,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // 드로어 메뉴 토글
   const menuIcon = document.getElementById("menu-logo");
   const drawerMenu = document.getElementById("drawer-menu");
-  menuIcon.addEventListener("click", () => {
-    // drawer open/close
-    const isOpen = drawerMenu.classList.toggle("open");
-    // 메뉴 아이콘 변경: 닫기 아이콘을 사용하려면 해당 경로로 바꿔주세요
-    menuIcon.src = isOpen ? "images/close-icon.png" : "images/로고.svg";
-  });
+  
+  if (menuIcon && drawerMenu) {
+    menuIcon.addEventListener("click", () => {
+      // drawer open/close
+      const isOpen = drawerMenu.classList.toggle("open");
+      // 메뉴 아이콘 변경: 닫기 아이콘을 사용하려면 해당 경로로 바꿔주세요
+      menuIcon.src = isOpen ? "images/close-icon.png" : "images/로고.svg";
+    });
+  }
   gsap.registerPlugin(ScrollTrigger);
 
 // 모든 메인 아이템
