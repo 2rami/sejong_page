@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
   
-    const boxes = [".intro-box", ".time-box", ".place-box", ".schedule-box", ".ticket-box"];
+    const boxes = [".time-box", ".place-box", ".schedule-box", ".ticket-box"];
     const sectionLength = 1 / boxes.length + 1;
   
     const tl = gsap.timeline({
@@ -28,6 +28,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+  
+    // boxes.forEach((box, index) => {
+    //   const boxStart = index * sectionLength;
+    //   const boxFadeOutStart = boxStart + sectionLength * 0.8;
+  
+    //   tl.fromTo(box,
+    //     { y: 50, opacity: 0 },
+    //     { y: 0, opacity: 1, duration: 0.3 },
+    //     boxStart
+    //   );
+  
+    //   tl.to(box,
+    //     { y: -50, opacity: 0, duration: 0.5 }, // 사라질 때도 부드럽게
+    //     boxFadeOutStart
+    //   );
+    // });
   
     boxes.forEach((box, index) => {
       const boxStart = index * sectionLength;
