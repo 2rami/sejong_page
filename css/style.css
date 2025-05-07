@@ -15,16 +15,18 @@
 
 .info-glass-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 40px;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .info-box {
   position: relative;
   width: 260px;
+  min-height: 180px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(15px);
@@ -34,7 +36,10 @@
   color: #ffffff;
   font-family: 'Apple SD Gothic Neo', sans-serif;
   text-align: center;
-  margin: 0 auto; /* center horizontally in flex container */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .info-box h2 {
