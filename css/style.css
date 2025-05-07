@@ -672,6 +672,21 @@ body {
   padding: 16px 0;
 }
 
+/* 동방미래특급 방문 표시 처리 */
+#performance-schedule a[href="east.html"] .performance-text h2 {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 방문한 링크는 색을 은은한 회색으로 변경 */
+#performance-schedule a[href="east.html"]:visited .performance-text h2 {
+  color: #888888;  /* 원하는 회색 톤으로 조절 가능☆ */
+}
+
+/* 배경 강조도 추가하고 싶으면 얘도 같이 쓰기 */
+#performance-schedule a[href="east.html"]:visited .performance-item {
+  background-color: rgba(136,136,136,0.1);
+}
+
 .event-list a {
   text-decoration: none;
   color: #000;
