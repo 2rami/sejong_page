@@ -387,20 +387,79 @@ body {
   background: #fefefe;
 }
 
+
 .eventpage-text {
-  max-width: 400px;
+  position: relative;
+  font-size: 6rem;
   font-family: "Apple SD Gothic Neo", sans-serif;
-  color: #222;
+  font-weight: 800;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  transition: color 1s ease, transform 0.3s ease;
+  width: 100vw;         /* Ensure full viewport width */
+  white-space: nowrap;  /* Prevent internal wrapping */
+  overflow-x: visible;  /* Allow the condensed text to expand */
 }
 
 .eventpage-text h2.condensed {
-  font-size: 3.2rem;
-  font-weight: 900;
-  color: #222;
+  white-space: nowrap; /* Keep single-line when text is condensed */
   text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-color: #ff6f61;
-  margin-bottom: 0.6rem;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.1em;
+}
+
+.poster-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 80px 10%;
+  background: linear-gradient(135deg, #fafafa, #f0f0f0);
+  position: relative;
+  z-index: 1;
+}
+
+.poster-text {
+  flex: 1;
+}
+
+.eastinfo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.condensed {
+  font-size: 1.5rem;
+  color: #444;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.2;
+}
+
+.poster-inner {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poster-img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.poster-img:hover {
+  transform: scale(1.02);
 }
 
 .eventpage-text .subtitle {
@@ -429,9 +488,9 @@ body {
     text-align: center;
   }
 
-  .eventpage-text {
+  /* .eventpage-text {
     max-width: 90%;
-  }
+  } */
 }
 
 
