@@ -147,9 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
   tlEvent.to(
     ".eventpage-text h2",
     {
-      x: 80,
-      y: -250,
-      scale: 0.2,
+      x: 90,
+      y: -100,
+      scale: 1.2,
       opacity: 1,
       ease: "power2.out",
       onStart: () => {
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { x: 0, y: 150, opacity: 0 }, // 초기 상태: 약간 위에서부터(혹은 아래에서, 원하는 효과에 따라 조정) 시작, 불투명도 0
     {
       x: 0,
-      y: -400,
+      y: -100,
       opacity: 1,
       duration: 0.6,
       stagger: 0.2,

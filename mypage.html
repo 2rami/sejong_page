@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=393, user-scalable=no">
+  <title>마이페이지 | 세종문화회관</title>
+  <link rel="stylesheet" href="css/mypage.css">
+  <script src="js/mypage.js" defer></script>
+</head>
+<body>
+  <nav class="mypage-navbar">
+    <div class="nav-left">
+      <img src="images/로고.svg" alt="로고">
+    </div>
+    <div class="nav-title">
+      <img src="images/로고.svg" alt="로고" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+      마이페이지
+    </div>
+    <a href="index2.html">
+        <img src="images/글씨로고.svg" alt="글씨로고" id="menu-logo-text">
+      </a>
+  </nav>
+
+  <main class="mypage-container">
+    <section class="user-info">
+      <h2>안녕하세요, <span id="user-name">홍길동</span>님!</h2>
+      <p>보유 포인트: <strong id="user-point">12,500P</strong></p>
+    </section>
+
+    <section class="reservation-section">
+      <h3>예매 내역</h3>
+      <ul class="reservation-list" id="reservation-list">
+        <!-- JS로 예매 내역 동적 생성 -->
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

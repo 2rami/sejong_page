@@ -1,10 +1,9 @@
-<!-- booking.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>동방미래특급 예매하기</title>
+  <title>세종문화회관</title>
   <link rel="stylesheet" href="css/booking.css">
 </head>
 <body>
@@ -13,7 +12,7 @@
       <img src="images/로고.svg" alt="로고">
     </div>
     <div class="nav-center">
-      <h1>동방미래특급 예매</h1>
+      <img src="images/로고.svg" alt="로고" id="menu-logo">
     </div>
     <div class="nav-right">
         <a href="index2.html">
@@ -28,37 +27,56 @@
       <h2>동방미래특급</h2>
     </section>
 
-    <section class="booking-form">
-      <form id="booking-form">
-        <div class="form-group">
-          <label for="date-select">공연일 선택</label>
-          <select id="date-select" required>
-            <option value="2025-05-02-19:30">2025.05.02 (금) 19:30</option>
-            <option value="2025-05-03-17:00">2025.05.03 (토) 17:00</option>
-            <option value="2025-05-04-17:00">2025.05.04 (일) 17:00</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="seat-select">좌석 등급</label>
-          <select id="seat-select" required>
-            <option value="R" data-price="50000">R석 - 50,000원</option>
-            <option value="S" data-price="40000">S석 - 40,000원</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="quantity">수량</label>
-          <input type="number" id="quantity" min="1" max="10" value="1" required>
-        </div>
-
-        <div class="form-summary">
-          <p>총 금액: <span id="total-price">50,000</span>원</p>
-        </div>
-
-        <button type="submit" class="btn-primary">결제하기</button>
-      </form>
+    <section class="seat-section">
+      <h3>좌석 선택</h3>
+      <div class="seat-map">
+        <!-- Seat map will be generated dynamically by JavaScript -->
+      </div>
+      <input type="hidden" id="selected-seat" name="selected-seat" required>
     </section>
+
+    <button id="open-booking" class="btn-primary">빠른 예매</button>
+
+    <div id="booking-overlay" class="overlay hidden">
+      <section class="booking-form">
+        <form id="booking-form">
+          <div class="form-group">
+            <label for="date-select">공연일 선택</label>
+            <select id="date-select" required>
+              <option value="2025-05-02-19:30">2025.05.02 (금) 19:30</option>
+              <option value="2025-05-03-17:00">2025.05.03 (토) 17:00</option>
+              <option value="2025-05-04-17:00">2025.05.04 (일) 17:00</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="seat-select">좌석 등급</label>
+            <select id="seat-select" required>
+              <option value="R" data-price="50000">R석 - 50,000원</option>
+              <option value="S" data-price="40000">S석 - 40,000원</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="quantity">수량</label>
+            <select id="quantity" required>
+              <option value="1">1매</option>
+              <option value="2">2매</option>
+              <option value="3">3매</option>
+              <option value="4">4매</option>
+              <option value="5">5매</option>
+            </select>
+          </div>
+
+          <div class="form-summary">
+            <p>총 금액: <span id="total-price">50,000</span>원</p>
+          </div>
+
+          <button type="submit" class="btn-primary">결제하기</button>
+        </form>
+      </section>
+    </div>
   </main>
 
   <footer id="site-footer">

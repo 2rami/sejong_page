@@ -1,3 +1,71 @@
+
+.event-lead {
+  font-size: 1rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.event-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #111;
+  text-align: center;
+  margin: 0;
+}
+
+.event-subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #444;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Mobile-friendly poster-section layout for east.html */
+.poster-section.mobile-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.poster-inner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.poster-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.poster-text .condensed.text-stroke {
+  font-size: 2rem;
+  -webkit-text-stroke: 1.5px black;
+  text-stroke: 1.5px black;
+  color: transparent;
+  margin: 0;
+}
+
+.poster-text .subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0.5rem;
+  text-align: center;
+}
 /* Glassmorphism info section for east.html */
 .info-background {
   position: absolute;
@@ -60,47 +128,6 @@
   color: #ffffff;
 }
 
-.poster-section {
-  position: relative;
-  width: 100%;
-  padding: 60px 0 0; /* 상단 여백 주고 하단은 딱 붙도록 */
-}
-
-.poster-inner {
-  display: flex;
-  justify-content: center;
-}
-
-.poster-img {
-  width: auto;
-  height: auto;
-  max-height: 80vh;
-  max-width: 100vw;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
-
-.poster-text {
-  text-align: left;
-  margin-left: 20px;
-  position: relative;
-  color: #000000;
-  font-family: 'Apple SD Gothic Neo', sans-serif;
-  font-weight: 800;
-
-}
-
-.poster-text h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.poster-text p {
-  font-size: 1.5rem;
-  font-weight: 400;
-}
 
 #scroll-image-section {
   height: 100vh;
@@ -375,17 +402,7 @@ body {
   background-color: #f5f5f5;
   transition: background 0.2s ease;
 }
-/* Eventpage text styles for poster-section */
-/* 🎨 공연정보 텍스트 꾸미기 */
-.poster-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-  gap: 40px;
-  background: #fefefe;
-}
+
 
 
 .eventpage-text {
@@ -408,26 +425,14 @@ body {
   text-decoration-thickness: 0.1em;
 }
 
-.poster-section {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  padding: 80px 10%;
-  background: linear-gradient(135deg, #fafafa, #f0f0f0);
-  position: relative;
-  z-index: 1;
-}
 
-.poster-text {
-  flex: 1;
-}
 
 .eastinfo-text {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
+  text-align: center;
 }
 
 .condensed {
@@ -443,24 +448,6 @@ body {
   line-height: 1.2;
 }
 
-.poster-inner {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.poster-img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 20px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-}
-
-.poster-img:hover {
-  transform: scale(1.02);
-}
 
 .eventpage-text .subtitle {
   font-size: 1.6rem;
@@ -468,30 +455,8 @@ body {
   color: #555;
 }
 
-.poster-img {
-  width: auto;
-  max-width: 400px;
-  max-height: 500px;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
 
-.poster-img:hover {
-  transform: scale(1.015);
-}
 
-@media screen and (max-width: 768px) {
-  .poster-section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  /* .eventpage-text {
-    max-width: 90%;
-  } */
-}
 
 
 #event {
@@ -502,12 +467,16 @@ body {
 }
 
 
+.event-title,
+.event-subtitle,
+.event-lead {
+  text-align: center;
+}
 .event-title {
   font-size: 32px;
   font-weight: 800;
   font-family: "Apple SD Gothic Neo", sans-serif;
   margin-bottom: 30px;
-  text-align: left;
   color: black;
 }
 
@@ -756,47 +725,7 @@ body {
   color: #ff3366;
 }
 
-.intro-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 24px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-  max-width: 360px;
-}
 
-.intro-text h2.condensed {
-  font-size: 2.6rem;
-  font-weight: 900;
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  margin-bottom: 0.4rem;
-}
-
-.intro-text .subtitle {
-  font-size: 1.4rem;
-  color: #eaeaea;
-  margin-bottom: 1rem;
-}
-
-.intro-img-wrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.intro-poster-img {
-  max-width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
-}
 
 
 /* css/style.css 하단에 추가 */
